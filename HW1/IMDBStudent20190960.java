@@ -58,10 +58,10 @@ public class IDBMStudent20190960
 		
 		Job job = new Job(conf, "IDBMStudent20190960");
 		
-		job.setJarByClass(IDBMStudent20190960.class);
-		job.setMapperClass(IDBMStudent20190960Mapper.class);
-		job.setCombinerClass(IDBMStudent20190960Reducer.class);
-		job.setReducerClass(IDBMStudent20190960Reducer.class);
+		job.setJarByClass(IMDBStudent20190960.class);
+		job.setMapperClass(IMDBStudent20190960Mapper.class);
+		job.setCombinerClass(IMDBStudent20190960Reducer.class);
+		job.setReducerClass(IMDBStudent20190960Reducer.class);
 		
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
