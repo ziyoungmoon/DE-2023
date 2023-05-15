@@ -44,7 +44,7 @@ public class UBERStudent20190960
 						break;
 					case 2: dayString = "TUE";
 						break;
-					case 3: dayString = "WEN";
+					case 3: dayString = "WED";
 						break;
 					case 4: dayString = "THR";
 						break;
