@@ -17,18 +17,18 @@ class MovieInfo
 	public double rating;
 	
 	public MovieInfo(String title, double average) {
-		this.movie_title = movie_title;
+		this.title = title;
 		this.average = average;
 	}
 	public String getTitle() {
-		return this.movie_title;
+		return this.title;
 	}
 	
 	public double getAverage() {
 		return this.average;
 	}	
 	public String getString() {
-		return movie_title + " " + average;
+		return title + " " + average;
 	}
 }
 	
