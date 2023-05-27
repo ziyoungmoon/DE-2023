@@ -1,3 +1,5 @@
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.util.*;
 import org.apache.hadoop.conf.*;
