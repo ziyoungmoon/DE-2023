@@ -11,67 +11,68 @@ import org.apache.hadoop.mapred.lib.*;
 import org.apache.hadoop.mapreduce.lib.input.*;
 import org.apache.hadoop.mapreduce.lib.output.*;
 import org.apache.hadoop.util.GenericOptionsParser;
+class MovieInfo 
+{
+	public String title;
+	public double rating;
+	
+	public MovieInfo(String title, double average) {
+		this.movie_title = movie_title;
+		this.average = average;
+	}
+	public String getTitle() {
+		return this.movie_title;
+	}
+	
+	public double getAverage() {
+		return this.average;
+	}	
+	public String getString() {
+		return movie_title + " " + average;
+	}
+}
+	
+// Composite Key
+class DoubleString implements WritableComparable 
+{
+	String joinKey = new String();
+	String tableName = new String();
+
+	public DoubleString() {}
+	public DoubleString( String _joinKey, String _tableName )
+	{
+		joinKey = _joinKey;
+		tableName = _tableName;
+	}
+	public void readFields(DataInput in) throws IOException
+	{
+		joinKey = in.readUTF();
+		tableName = in.readUTF();
+	}
+	public void write(DataOutput out) throws IOException
+	{
+		out.writeUTF(joinKey);
+		out.writeUTF(tableName);
+	}
+		
+	// effect to order of value list
+	public int compareTo(Object o1)
+	{
+		DoubleString o = (DoubleString) o1;
+		int ret = joinKey.compareTo( o.joinKey );
+		if (ret!=0) return ret;
+		// sorting
+		return tableName.compareTo( o.tableName );
+	}
+	public String toString()
+	{ 
+		return joinKey + " " + tableName; 
+	}
+}
+	
+	
 public class IMDBStudent20190960
 {
-	public static class MovieInfo {
-		public String title;
-		public double rating;
-		
-		public MovieInfo(String title, double average) {
-			this.movie_title = movie_title;
-			this.average = average;
-		}
-		public String getTitle() {
-			return this.movie_title;
-		}
-		
-		public double getAverage() {
-			return this.average;
-		}	
-		public String getString() {
-			return movie_title + " " + average;
-		}
-	}
-	
-	// Composite Key
-	class DoubleString implements WritableComparable 
-	{
-		String joinKey = new String();
-		String tableName = new String();
-
-		public DoubleString() {}
-		public DoubleString( String _joinKey, String _tableName )
-		{
-			joinKey = _joinKey;
-			tableName = _tableName;
-		}
-		public void readFields(DataInput in) throws IOException
-		{
-			joinKey = in.readUTF();
-			tableName = in.readUTF();
-		}
-		public void write(DataOutput out) throws IOException
-		{
-			out.writeUTF(joinKey);
-			out.writeUTF(tableName);
-		}
-			
-		// effect to order of value list
-		public int compareTo(Object o1)
-		{
-			DoubleString o = (DoubleString) o1;
-			int ret = joinKey.compareTo( o.joinKey );
-			if (ret!=0) return ret;
-			// sorting
-			return tableName.compareTo( o.tableName );
-		}
-		public String toString()
-		{ 
-			return joinKey + " " + tableName; 
-		}
-
-	}
-	
 	public static class AverageComparator implements Comparator<Info> {
 		public int compare(Info x, Info y) {
 			if ( x.average > y.average ) return 1;
